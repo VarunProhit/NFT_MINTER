@@ -2,7 +2,7 @@ import express from "express";
 import multer from "multer";
 import cors from "cors";
 import axios from "axios";
-import env from "env";
+import env from "dotenv";
 import { setUncaughtExceptionCaptureCallback } from "process";
 
 const app = express();
