@@ -47,9 +47,9 @@ app.post('/upload', cors(), upload.single('file'), async(req,res)=>{
         })
         return ipfsMetadata.data;
     }
-    const SMART_CONTRACT_NETWORK="polygon-mumbai"
-    const SMART_CONTRACT_ADDRESS="0x4398B0b8E7bd92661bcb0165F2604DDE6D1F7ad0"
-    const WALLET_IMPORTED_ON_STARTON="0xBe30263e00048159F494790BA117c7E1c172b29b";
+    const SMART_CONTRACT_NETWORK=process.env.SMART_CONTRACT_NETWORK
+    const SMART_CONTRACT_ADDRESS=process.env.SMART_CONTRACT_ADDRESS
+    const WALLET_IMPORTED_ON_STARTON=process.env.WALLET_IMPORTED_ON_STARTON;
     async function mintNFT(receiverAddress,metadataCid){
         const nft = await starton.post(`/smart-contract/${SMART_CONTRACT_NETWORK}/${SMART_CONTRACT_ADDRESS}/call`, {
             functionName: "mint",
@@ -59,7 +59,7 @@ app.post('/upload', cors(), upload.single('file'), async(req,res)=>{
         })
         return nft.data;
     }
-    const RECEIVER_ADDRESS = "0xa0cC26b5201089De4bD3ff047e3f6cd89Be48A60"
+    const RECEIVER_ADDRESS = process.env.RECEIVER_ADDRESS
     const ipfsImgData = await uploadImageOnIpfs();
     const ipfsMetadata = await uploadMetadataOnIpfs(ipfsImgData.cid);
     const nft = await mintNFT(RECEIVER_ADDRESS,ipfsMetadata.cid)
