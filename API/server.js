@@ -10,7 +10,9 @@ const port = process.env.PORT || 5000;
 
 app.use(express.json());
 env.config();
-app.use(cors("*"));
+app.use(cors({
+  origin: "*"
+}));
 
 const upload = multer({
   limits: {
