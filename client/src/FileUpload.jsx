@@ -12,10 +12,11 @@ const FileUpload = () => {
                 formData.append("file", file);
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'}/upload`, {
                     method: 'POST',
+                    mode: 'cors',
                     body: formData,
-                    // headers: {
-                    //     'Content-Type': 'multipart/form-data'
-                    // }
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 }).then(response => response.json())
                     .then(data => {
                         setCid(data.cid);
