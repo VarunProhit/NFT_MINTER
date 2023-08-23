@@ -13,16 +13,13 @@ const FileUpload = () => {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_URL ?? 'http://localhost:5000'}/upload`, {
                     method: 'POST',
                     mode: 'cors',
-                    body: formData,
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
+                    body: formData
                 }).then(response => response.json())
                     .then(data => {
                         setCid(data.cid);
                         setTransaction(data.transactionHash)
-                        console.log(data.cid)
-                        console.log(data.transactionHash)
+                        // console.log(data.cid)
+                        // console.log(data.transactionHash)
                     })
                     .catch(error => {
                         console.error(error);
