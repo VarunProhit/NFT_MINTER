@@ -5,117 +5,68 @@
 // $size: size of the font (xxs, xs, sm, md, lg, xl, xxl, xxxl)
 // $weight: weight of the font (light, regular, medium, semi-bold, bold)
 
-$font-families: (
-	"montserrat",
-	"source-sans"
-);
+$font-families: ("montserrat", "source-sans");
 
-$font-sizes: (
-	"xxs",
-	"xs",
-	"sm",
-	"md",
-	"lg",
-	"xl",
-	"xxl",
-	"xxxl"
-);
+$font-sizes: ("xxs", "xs", "sm", "md", "lg", "xl", "xxl", "xxxl");
 
-$font-weights: (
-	"light",
-	"regular",
-	"medium",
-	"semi-bold",
-	"bold"
-);
+$font-weights: ("light", "regular", "medium", "semi-bold", "bold");
 
 @mixin typography($name: "Montserrat", $size: "md", $weight: "regular") {
 	// font families
 
-	@if $name =="Montserrat" or $name =="montserrat" or $name =="m" {
+	@if $name == "Montserrat" or $name == "montserrat" or $name == "m" {
 		font-family: var(--font-montserrat);
-	}
-
-	@else if $name =="Source Sans" or $name =="source-sans" or $name =="s"
-
-		{
+	} @else if $name == "Source Sans" or $name == "source-sans" or $name == "s"
+	{
 		font-family: var(--font-source-sans);
-	}
-
-	@else {
+	} @else {
 		font-family: var(--font-montserrat);
 	}
 
 	// font sizes
 
-	@if $size =="xxs" {
+	@if $size == "xxs" {
 		font-size: 12px;
 		line-height: 18px;
-	}
-
-	@else if $size =="xs" {
+	} @else if $size == "xs" {
 		font-size: 14px;
 		line-height: 20px;
-	}
-
-	@else if $size =="sm" {
+	} @else if $size == "sm" {
 		font-size: 16px;
 		line-height: 32px;
-	}
-
-	@else if $size =="md" {
+	} @else if $size == "md" {
 		font-size: 32px;
 		line-height: 40px;
-	}
-
-	@else if $size =="lg" {
+	} @else if $size == "lg" {
 		font-size: 40px;
 		line-height: 48px;
-	}
-
-	@else if $size =="xl" {
+	} @else if $size == "xl" {
 		font-size: 48px;
 		line-height: 56px;
-	}
-
-	@else if $size =="xxl" {
+	} @else if $size == "xxl" {
 		font-size: 56px;
 		line-height: 64px;
-	}
-
-	@else if $size =="xxxl" {
+	} @else if $size == "xxxl" {
 		font-size: 64px;
 		line-height: 80px;
-	}
-
-	@else {
+	} @else {
 		font-size: 32px;
 		line-height: 40px;
 	}
 
 	// font weights
 
-	@if $weight =="light" {
+	@if $weight == "light" {
 		font-weight: 300;
-	}
-
-	@else if $weight =="regular" {
+	} @else if $weight == "regular" {
 		font-weight: 400;
-	}
-
-	@else if $weight =="medium" {
+	} @else if $weight == "medium" {
 		font-weight: 500;
-	}
-
-	@else if $weight =="semi-bold" {
+	} @else if $weight == "semi-bold" {
 		font-weight: 600;
-	}
-
-	@else if $weight =="bold" {
+	} @else if $weight == "bold" {
 		font-weight: 700;
-	}
-
-	@else {
+	} @else {
 		font-weight: 400;
 	}
 }
