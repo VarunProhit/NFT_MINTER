@@ -8,11 +8,7 @@ const classes = stylesConfig(styles, "home-hero");
 const HomeHero = () => {
 	return (
 		<section className={classes("")}>
-			<Typography
-				type="heading"
-				variant="display"
-				className={classes("-title")}
-			>
+			<Typography as="h1" className={classes("-title")}>
 				NFT Marketplace
 			</Typography>
 			<button
