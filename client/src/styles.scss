@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    transition: all var(--transition-time) ease-in-out;
+}
+
+@import "./sass/shadows";
+@import "./sass/colors";
+@import "./sass/presets";
+
+:root,
+:root::before,
+:root::after {
+    --transition-time: 200ms;
+    --font-poppins: "Poppins", sans-serif;
+}
+
+@import "./sass/mixins";
+@import "./sass/responsive";
+@import "./sass/variables";
+@import "./sass/typography";
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-poppins);
+}
+
+html,
+body {
+    ::-webkit-scrollbar {
+        width: 1.5px;
+        height: 1.5px;
+        background: transparent;
+
+        &-thumb {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        &-track {
+            background: transparent;
+        }
+    }
+}
+
+::selection {
+    background-color: var(--color-main-hover);
+    color: var(--color-white);
+}
+
+.dispn {
+    display: none !important;
+}
