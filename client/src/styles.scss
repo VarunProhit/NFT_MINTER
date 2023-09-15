@@ -15,8 +15,10 @@
 :root,
 :root::before,
 :root::after {
-	--transition-time: 200ms;
+	--transition-time: 0.2s;
 	--font-poppins: "Poppins", sans-serif;
+	--font-montserrat: "Montserrat", sans-serif;
+	--font-source-sans: "Source Sans 3", sans-serif;
 }
 
 @import "./sass/mixins";
