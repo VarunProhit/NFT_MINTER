@@ -1,12 +1,11 @@
-import FileUpload from "./FileUpload";
+import HomePage from "./pages/Home";
 import "./styles.scss";
 
 function App() {
 	return (
-		<div className="App">
-			<h1>NFT Minter</h1>
-			<FileUpload></FileUpload>
-		</div>
+		<>
+			<HomePage />
+		</>
 	);
 }
 
