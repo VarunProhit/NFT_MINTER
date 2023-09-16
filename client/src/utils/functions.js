@@ -17,6 +17,10 @@ export const copy = (text) => {
 	navigator.clipboard.writeText(text);
 };
 
+export const openLink = (url) => {
+	window.open(url, "_blank");
+};
+
 export const exportAsJson = (data, filename) => {
 	const json = JSON.stringify(data);
 	const blob = new Blob([json], { type: "application/json" });

@@ -2,8 +2,19 @@ import React, { useState } from "react";
 import Typography from "../../../library/Typography";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegFileAlt } from "react-icons/fa";
-import { FiCopy, FiDownload, FiLogIn, FiUpload } from "react-icons/fi";
-import { copy, exportAsJson, stylesConfig } from "../../../utils/functions";
+import {
+	FiCopy,
+	FiDownload,
+	FiExternalLink,
+	FiLogIn,
+	FiUpload,
+} from "react-icons/fi";
+import {
+	copy,
+	exportAsJson,
+	openLink,
+	stylesConfig,
+} from "../../../utils/functions";
 import styles from "./styles.module.scss";
 
 const classes = stylesConfig(styles, "home-mint");
@@ -217,23 +228,59 @@ const HomeMint = () => {
 									}}
 								/>
 							</Typography>
-							<button
-								className={classes("-transaction-details-btn")}
-								onClick={() => {
-									exportAsJson(
-										transactionDetails,
-										`transaction-${
-											transactionDetails.cid
-										}-${new Date()
-											.toISOString()
-											.slice(0, 10)}.json`
-									);
-								}}
-								disabled={loading}
+							<div
+								className={classes("-transaction-details-btns")}
 							>
-								<FiDownload />
-								Export details
-							</button>
+								<button
+									className={classes(
+										"-transaction-details-btn"
+									)}
+									onClick={() => {
+										openLink(
+											`https://${transactionDetails.cid}.ipfs.dweb.link`
+										);
+									}}
+									disabled={loading}
+								>
+									<FiExternalLink />
+									View Character
+								</button>
+								<button
+									className={classes(
+										"-transaction-details-btn"
+									)}
+									onClick={() => {
+										openLink(
+											`https://mumbai.polygonscan.com/tx/${transactionDetails.hash}`
+										);
+									}}
+									disabled={loading}
+								>
+									<FiExternalLink />
+									View Transaction
+								</button>
+								<button
+									className={classes(
+										"-transaction-details-btn"
+									)}
+									onClick={() => {
+										exportAsJson(
+											{
+												...transactionDetails,
+												resource: `https://${transactionDetails.cid}.ipfs.dweb.link`,
+												transactionDetails: `https://mumbai.polygonscan.com/tx/${transactionDetails.hash}`,
+											},
+											`transaction-${
+												transactionDetails.cid
+											}-${new Date().getTime()}.json`
+										);
+									}}
+									disabled={loading}
+								>
+									<FiDownload />
+									Export details
+								</button>
+							</div>
 						</div>
 					) : null}
 				</div>
