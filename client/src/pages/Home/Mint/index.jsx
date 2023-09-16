@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Typography from "../../../library/Typography";
 import { AiOutlineDelete } from "react-icons/ai";
 import { FaRegFileAlt } from "react-icons/fa";
-import { FiCopy, FiLogIn, FiUpload } from "react-icons/fi";
-import { stylesConfig } from "../../../utils/functions";
+import { FiCopy, FiDownload, FiLogIn, FiUpload } from "react-icons/fi";
+import { copy, exportAsJson, stylesConfig } from "../../../utils/functions";
 import styles from "./styles.module.scss";
 
 const classes = stylesConfig(styles, "home-mint");
@@ -195,32 +195,45 @@ const HomeMint = () => {
 						<div className={classes("-transaction-details")}>
 							<Typography
 								size="xs"
-								as="p"
+								as="span"
 								className={classes("-transaction-details-cid")}
 							>
 								CID: {transactionDetails.cid}{" "}
 								<FiCopy
-									onClick={() =>
-										navigator.clipboard.writeText(
-											transactionDetails.cid
-										)
-									}
+									onClick={() => {
+										copy(transactionDetails.cid);
+									}}
 								/>
 							</Typography>
 							<Typography
 								size="xs"
-								as="p"
+								as="span"
 								className={classes("-transaction-details-hash")}
 							>
 								Transaction Hash: {transactionDetails.hash}{" "}
 								<FiCopy
-									onClick={() =>
-										navigator.clipboard.writeText(
-											transactionDetails.hash
-										)
-									}
+									onClick={() => {
+										copy(transactionDetails.hash);
+									}}
 								/>
 							</Typography>
+							<button
+								className={classes("-transaction-details-btn")}
+								onClick={() => {
+									exportAsJson(
+										transactionDetails,
+										`transaction-${
+											transactionDetails.cid
+										}-${new Date()
+											.toISOString()
+											.slice(0, 10)}.json`
+									);
+								}}
+								disabled={loading}
+							>
+								<FiDownload />
+								Export details
+							</button>
 						</div>
 					) : null}
 				</div>
