@@ -12,7 +12,10 @@ env.config();
 app.use(
 	cors({
 		origin: "*",
-		methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    AccessControlAllowOrigin: "*",
+    AccessControlAllowMethods: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    AccessControlAllowHeaders: "Origin, X-Requested-With, Content-Type, Accept, Authorization",
 	})
 );
 
