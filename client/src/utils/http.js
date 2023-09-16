@@ -1,5 +1,5 @@
 class HTTPClient {
-	baseUrl = "http://localhost:8080/api";
+	baseUrl = "";
 
 	constructor(baseUrl) {
 		this.baseUrl = baseUrl;
