@@ -18,8 +18,8 @@ const FileUpload = () => {
                     .then(data => {
                         setCid(data.cid);
                         setTransaction(data.transactionHash)
-                        // console.log(data.cid)
-                        // console.log(data.transactionHash)
+                        console.log(data.cid)
+                        console.log(data.transactionHash)
                     })
                     .catch(error => {
                         console.error(error);
