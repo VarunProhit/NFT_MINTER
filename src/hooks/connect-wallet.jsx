@@ -28,11 +28,11 @@ const useConnectWallet = () => {
 		}
 	};
 
-	useEffect(() => {
-		createInstance();
-	}, []);
-
-	return walletState;
+	return {
+		signer: walletState?.signer,
+		contract: walletState?.contract,
+		connect: createInstance,
+	};
 };
 
 export default useConnectWallet;

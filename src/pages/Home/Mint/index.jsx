@@ -17,10 +17,12 @@ import {
 } from "../../../utils/functions";
 import styles from "./styles.module.scss";
 import { http } from "../../../utils/http";
+import useConnectWallet from "../../../hooks/connect-wallet";
 
 const classes = stylesConfig(styles, "home-mint");
 
 const HomeMint = () => {
+	const walletState = useConnectWallet();
 	const [file, setFile] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [transactionDetails, setTransactionDetails] = useState({
@@ -69,7 +71,7 @@ const HomeMint = () => {
 		}
 	};
 
-	return (
+	return walletState && walletState.signer ? (
 		<section className={classes("")} id="mint">
 			<Typography size="xl" as="h1" className={classes("-title")}>
 				Mint your NFT Characters
@@ -273,6 +275,32 @@ const HomeMint = () => {
 							</div>
 						</div>
 					) : null}
+				</div>
+			</div>
+		</section>
+	) : (
+		<section className={classes("")} id="mint">
+			<Typography size="xl" as="h1" className={classes("-title")}>
+				Connect your wallet to mint
+			</Typography>
+			<Typography size="sm" as="p" className={classes("-subtitle")}>
+				Connect your wallet to mint your NFT Character.
+			</Typography>
+			<div className={classes("-container")}>
+				<div className={classes("-image")}>
+					<img src="/vectors/illustration.svg" alt="illustration" />
+				</div>
+				<div className={classes("-content")}>
+					<button
+						className={classes("-file-upload-btn")}
+						type="submit"
+						onClick={() => {
+							if (!walletState?.signer) walletState.connect();
+						}}
+					>
+						<FiLogIn />
+						Connect Wallet
+					</button>
 				</div>
 			</div>
 		</section>
