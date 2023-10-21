@@ -1,29 +1,60 @@
 @import "../../../sass/mixins";
 
 .home-hero {
-	width: 100vw;
-	height: 100vh;
+	width: calc(100% - 32px);
+	height: calc(100vh - 32px);
+	margin: 16px;
+	border-radius: 16px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: relative;
-	// background-image: url("/images/bg.gif");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-blend-mode: darken;
 	background-color: rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+
+	&-graphic {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+
+		img {
+			object-fit: cover;
+			width: 80%;
+			max-height: 100%;
+			height: auto;
+			transform: scaleX(-1);
+		}
+	}
+
+	&-content {
+		width: 45%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 48px;
+		padding: 0 0 0 5%;
+	}
 
 	&-title {
 		width: 100%;
-		text-align: center;
-		@include font(Orbitron, 85px, 800, initial, #fff, 15px);
-		transform: skew(-10deg);
-		text-transform: uppercase;
+		@include font(Orbitron, 64px, 200, 120%, #fff, 4px);
 		animation: appear 0.4s ease-in-out 1s forwards;
 		opacity: 0;
-		text-align: center;
+		text-align: left;
+	}
+
+	&-subtitle {
+		width: 100%;
+		color: #fff;
 	}
 
 	&-btn {
@@ -67,12 +98,12 @@
 @keyframes appear {
 	0% {
 		opacity: 0;
-		transform: skew(-10deg) scale(2.5);
+		transform: scale(2.5);
 	}
 
 	100% {
 		opacity: 1;
-		transform: skew(-10deg) scale(1);
+		transform: scale(1);
 	}
 }
 

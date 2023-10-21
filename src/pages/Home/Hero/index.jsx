@@ -13,18 +13,18 @@ const HomeHero = () => {
 				backgroundImage: "url(/images/bg.gif)",
 			}}
 		>
-			<Typography as="h1" className={classes("-title")}>
-				NFT Marketplace
-			</Typography>
-			<button
-				className={classes("-btn")}
-				type="button"
-				onClick={() => {
-					window.scroll(0, window.innerHeight);
-				}}
-			>
-				<span className={classes("-btn-arrow")} />
-			</button>
+			<div className={classes("-content")}>
+				<Typography as="h1" className={classes("-title")}>
+					Discover and collect extraordinary NFTs
+				</Typography>
+				<Typography as="p" className={classes("-subtitle")} size="md">
+					On NFT Marketplace you can buy, sell, and explore digital
+					goods secured with blockchain technology.
+				</Typography>
+			</div>
+			<div className={classes("-graphic")}>
+				<img src="/images/cat.png" alt="Robot" />
+			</div>
 		</section>
 	);
 };
