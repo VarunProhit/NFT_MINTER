@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Contract, ethers } from "ethers";
 import useStore from "./store";
 import instance from "../assets/MyNft.sol/MyNFT.json";
