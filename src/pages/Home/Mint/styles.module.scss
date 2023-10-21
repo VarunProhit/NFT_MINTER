@@ -99,6 +99,11 @@
 				padding: 10px 16px;
 				border-radius: 8px;
 			}
+
+			label:has(input:disabled) {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
 		}
 	}
 

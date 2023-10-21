@@ -81,20 +81,20 @@
 	}
 
 	&-content {
-		width: 45%;
+		width: 50%;
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: flex-start;
 		flex-direction: column;
 		gap: 48px;
-		padding: 0 0 0 5%;
+		padding: 24px 0 24px 5%;
 		overflow: hidden;
 	}
 
 	&-title {
 		width: 100%;
-		@include font(Orbitron, 64px, 200, 120%, #fff, 4px);
+		@include font(Orbitron, 56px, 200, 120%, #fff, 4px);
 		animation: appear 0.4s ease-in-out 1s forwards;
 		opacity: 0;
 		text-align: left;
