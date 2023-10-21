@@ -3,7 +3,6 @@ import multer from "multer";
 import cors from "cors";
 import axios from "axios";
 import env from "dotenv";
-import { setUncaughtExceptionCaptureCallback } from "process";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -44,8 +43,8 @@ app.post("/upload", cors(), upload.single("file"), async (req, res) => {
 	}
 	async function uploadMetadataOnIpfs(imgCid) {
 		const metadataJson = {
-			name: `A Wonderful NFT`,
-			description: `Probably the most awesome NFT ever created !`,
+			name: "A Wonderful NFT",
+			description: "Probably the most awesome NFT ever created !",
 			image: `ipfs://ipfs/${imgCid}`,
 		};
 		const ipfsMetadata = await starton.post("/ipfs/json", {

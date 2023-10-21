@@ -10,7 +10,7 @@ const FileUpload = () => {
 			if (file) {
 				const formData = new FormData();
 				formData.append("file", file);
-				const response = await fetch(
+				await fetch(
 					`${
 						import.meta.env.VITE_BACKEND_URL ??
 						"http://localhost:5000"
