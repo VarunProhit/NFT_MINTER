@@ -94,3 +94,19 @@ export const omitKeys = (obj, keys) => {
 // function to round off a number to given decimal places
 export const roundOff = (num, decimalPlaces) =>
 	Math.round(num * 10 ** decimalPlaces) / 10 ** decimalPlaces;
+
+export const copy = (text) => {
+	navigator.clipboard.writeText(text);
+};
+
+export const exportAsJson = (data, filename) => {
+	const json = JSON.stringify(data);
+	const blob = new Blob([json], { type: "application/json" });
+	const href = URL.createObjectURL(blob);
+	const link = document.createElement("a");
+	link.href = href;
+	link.download = filename;
+	document.body.appendChild(link);
+	link.click();
+	document.body.removeChild(link);
+};
