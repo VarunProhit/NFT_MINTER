@@ -1,4 +1,6 @@
 import React from "react";
+import metamaskIcon from "../../../SVGs/metamask.svg";
+import Button from "../../../library/Button";
 import Typography from "../../../library/Typography";
 import { stylesConfig } from "../../../utils/functions";
 import styles from "./styles.module.scss";
@@ -21,6 +23,13 @@ const HomeHero = () => {
 					On NFT Marketplace you can buy, sell, and explore digital
 					goods secured with blockchain technology.
 				</Typography>
+				<Button
+					icon={<img src={metamaskIcon} alt="metamask" />}
+					className={classes("-button")}
+					size="large"
+				>
+					Connect your wallet
+				</Button>
 			</div>
 			<div className={classes("-graphic")}>
 				<img src="/images/cat.png" alt="Robot" />
