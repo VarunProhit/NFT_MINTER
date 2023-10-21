@@ -6,6 +6,7 @@ import "./style.scss";
 import { useContextData } from "./context/useContext";
 import GlobalContext from "./context/GlobalContext";
 import routes from "./routes";
+import Footer from "./components/Footer";
 
 const Wrapper = () => {
 	AOS.init();
@@ -22,6 +23,7 @@ const Wrapper = () => {
 					);
 				})}
 			</Routes>
+			<Footer />
 		</>
 	);
 };
