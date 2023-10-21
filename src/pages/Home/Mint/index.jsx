@@ -17,6 +17,7 @@ import {
 } from "../../../utils/functions";
 import styles from "./styles.module.scss";
 import { backendBaseUrl } from "../../../constants/variables";
+import { http } from "../../../utils/http";
 
 const classes = stylesConfig(styles, "home-mint");
 
@@ -56,15 +57,10 @@ const HomeMint = () => {
 			if (file) {
 				const formData = new FormData();
 				formData.append("file", file);
-				const response = await fetch(`${backendBaseUrl}/upload`, {
-					method: "POST",
-					mode: "cors",
-					body: formData,
-				});
-				const data = await response.json();
+				const data = await http.post("/upload", formData);
 				setTransactionDetails({
-					cid: data.cid,
-					hash: data.transactionHash,
+					cid: data.data.cid,
+					hash: data.data.transactionHash,
 				});
 			}
 		} catch (error) {
