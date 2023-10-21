@@ -16,7 +16,6 @@ import {
 	stylesConfig,
 } from "../../../utils/functions";
 import styles from "./styles.module.scss";
-import { backendBaseUrl } from "../../../constants/variables";
 import { http } from "../../../utils/http";
 
 const classes = stylesConfig(styles, "home-mint");
