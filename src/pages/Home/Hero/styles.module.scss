@@ -89,6 +89,7 @@
 		flex-direction: column;
 		gap: 48px;
 		padding: 0 0 0 5%;
+		overflow: hidden;
 	}
 
 	&-title {
@@ -106,6 +107,7 @@
 
 	&-button {
 		@include font(Montserrat, 24px, 400, 120%, #fff);
+		max-width: 75%;
 
 		img,
 		svg {
