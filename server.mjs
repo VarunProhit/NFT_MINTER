@@ -3,8 +3,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import { PORT } from "./config/index.mjs";
 
-import connect from "./db/index.mjs";
-import apiIndex from "./routes/index.mjs";
+import apiUpload from "./routes/upload.mjs";
 
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -19,7 +18,7 @@ app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/api", apiIndex);
+app.use("/api/upload", apiUpload);
 
 app.use(express.static("build"));
 app.get("*", (req, res) => {
@@ -28,6 +27,5 @@ app.get("*", (req, res) => {
 // Serve the build files as static files
 
 app.listen(PORT, () => {
-	connect();
 	console.info(`Server started at port ${PORT}`);
 });

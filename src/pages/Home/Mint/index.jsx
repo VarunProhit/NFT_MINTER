@@ -16,6 +16,7 @@ import {
 	stylesConfig,
 } from "../../../utils/functions";
 import styles from "./styles.module.scss";
+import { backendBaseUrl } from "../../../constants/variables";
 
 const classes = stylesConfig(styles, "home-mint");
 
@@ -55,17 +56,11 @@ const HomeMint = () => {
 			if (file) {
 				const formData = new FormData();
 				formData.append("file", file);
-				const response = await fetch(
-					`${
-						import.meta.env.VITE_BACKEND_URL ??
-						"http://localhost:5000"
-					}/upload`,
-					{
-						method: "POST",
-						mode: "cors",
-						body: formData,
-					}
-				);
+				const response = await fetch(`${backendBaseUrl}/upload`, {
+					method: "POST",
+					mode: "cors",
+					body: formData,
+				});
 				const data = await response.json();
 				setTransactionDetails({
 					cid: data.cid,
