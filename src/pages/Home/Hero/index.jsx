@@ -34,7 +34,7 @@ const HomeHero = () => {
 		} else {
 			setButtonIcon(<img src={metamaskIcon} alt="metamask" />);
 		}
-	}, [walletState]);
+	}, [walletState?.signer]);
 
 	return (
 		<section

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
-import { stylesConfig } from "../../../utils/functions";
+import { copy, stylesConfig } from "../../../utils/functions";
 import Typography from "../../../library/Typography";
 import useWallet from "../../../hooks/wallet";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { IoCopyOutline } from "react-icons/io5";
 import useConnectWallet from "../../../hooks/connect-wallet";
 import Button from "../../../library/Button";
 
@@ -19,7 +20,6 @@ const HomeStatus = () => {
 		try {
 			setFetching(true);
 			const res = await walletState.balance;
-			console.log(res, typeof res);
 			setBalance(res);
 		} catch (error) {
 			console.error(error);
@@ -53,6 +53,13 @@ const HomeStatus = () => {
 					</div>
 				</div>
 				<div className={classes("-body")}>
+					<Typography size="md">
+						Address: {walletState.address.slice(0, 7)}...
+						{walletState.address.slice(-3)}
+						<button onClick={() => copy(walletState.address)}>
+							<IoCopyOutline />
+						</button>
+					</Typography>
 					<Typography size="md">Balance: {balance} ETH</Typography>
 				</div>
 			</div>

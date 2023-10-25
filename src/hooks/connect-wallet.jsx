@@ -22,6 +22,7 @@ const useConnectWallet = () => {
 				contract,
 				provider,
 				signer,
+				address: await signer.getAddress(),
 			});
 		} catch (error) {
 			console.error(error);
@@ -32,7 +33,9 @@ const useConnectWallet = () => {
 	const disconnectWallet = () => {
 		setWalletState({
 			contract: null,
+			provider: null,
 			signer: null,
+			address: null,
 		});
 	};
 
