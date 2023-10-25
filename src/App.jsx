@@ -2,11 +2,11 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./style.scss";
 import { useContextData } from "./context/useContext";
 import GlobalContext from "./context/GlobalContext";
 import routes from "./routes";
 import Footer from "./components/Footer";
+import "./style.scss";
 
 const Wrapper = () => {
 	AOS.init();

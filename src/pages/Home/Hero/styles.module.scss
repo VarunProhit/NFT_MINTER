@@ -1,65 +1,118 @@
 @import "../../../sass/mixins";
+@import "../../../sass/typography";
 
 .home-hero {
-	width: 100vw;
-	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	width: calc(100% - 32px);
+	height: calc(100vh - 32px);
+	margin: 16px;
+	border-radius: 32px;
 	position: relative;
-	// background-image: url("/images/bg.gif");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-blend-mode: darken;
 	background-color: rgba(0, 0, 0, 0.5);
+	overflow: hidden;
+
+	&-header {
+		width: 100%;
+		height: 80px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 5%;
+		position: relative;
+
+		img {
+			object-fit: contain;
+			width: auto;
+			height: 100%;
+		}
+
+		nav {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0 128px;
+			background-color: var(--color-white);
+			clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+			position: sticky;
+			top: 16px;
+			z-index: 1;
+
+			ul {
+				list-style: none;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 24px;
+
+				li {
+					@include font(Montserrat, 16px, 400, 120%, #000);
+				}
+			}
+		}
+	}
+
+	&-body {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&-graphic {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+
+		img {
+			object-fit: cover;
+			width: 95%;
+			max-height: 100%;
+			height: auto;
+			transform: scaleX(-1);
+		}
+	}
+
+	&-content {
+		width: 50%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 48px;
+		padding: 24px 0 24px 5%;
+		overflow: hidden;
+	}
 
 	&-title {
 		width: 100%;
-		text-align: center;
-		@include font(Orbitron, 85px, 800, initial, #fff, 15px);
-		transform: skew(-10deg);
-		text-transform: uppercase;
+		@include font(Orbitron, 56px, 200, 120%, #fff, 4px);
 		animation: appear 0.4s ease-in-out 1s forwards;
 		opacity: 0;
-		text-align: center;
+		text-align: left;
 	}
 
-	&-btn {
-		@include init-button();
-		width: 48px;
-		height: 48px;
-		position: absolute;
-		bottom: 32px;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: 5;
+	&-subtitle {
+		width: 100%;
+		color: #fff;
+	}
 
-		&-arrow {
-			width: 1px;
-			background-color: #fff;
-			position: relative;
-			animation: expand-arrow 0.5s linear 1s forwards;
+	&-button {
+		@include font(Montserrat, 24px, 400, 120%, #fff);
+		max-width: 75%;
 
-			&::before,
-			&::after {
-				content: "";
-				position: absolute;
-				bottom: 0;
-				width: 1px;
-				height: 50%;
-				background-color: #fff;
-				transform-origin: bottom;
-			}
-
-			&::before {
-				transform: rotate(-45deg);
-			}
-
-			&::after {
-				transform: rotate(45deg);
-			}
+		img,
+		svg {
+			width: 28px;
+			height: 28px;
 		}
 	}
 }
@@ -67,12 +120,12 @@
 @keyframes appear {
 	0% {
 		opacity: 0;
-		transform: skew(-10deg) scale(2.5);
+		transform: scale(2.5);
 	}
 
 	100% {
 		opacity: 1;
-		transform: skew(-10deg) scale(1);
+		transform: scale(1);
 	}
 }
 

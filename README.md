@@ -1,6 +1,7 @@
-# MERN Stack Template
+# NFT Marketplace
 
-A template for MERN stack projects.
+NFT Marketplace is a decentralized application (DApp) that allows users to buy and sell NFTs. It is built using React.js, Express.js, MongoDB, and Solidity.
+Sell your digital assets, collectibles, and more on the blockchain.
 
 ## Features
 

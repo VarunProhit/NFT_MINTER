@@ -1,0 +1,50 @@
+.connect-wallet {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&-popup {
+		width: 300px;
+		height: 800px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: 16px;
+		position: relative;
+		z-index: 3;
+	}
+
+	&__loader {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		border: 5px solid #fff;
+		border-top-color: #000;
+		animation: loader 1s linear infinite;
+	}
+
+	&-overlay {
+		background-color: rgba(0, 0, 0, 0.5);
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		z-index: 2;
+	}
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}

@@ -17,10 +17,12 @@ import {
 } from "../../../utils/functions";
 import styles from "./styles.module.scss";
 import { http } from "../../../utils/http";
+import useConnectWallet from "../../../hooks/connect-wallet";
 
 const classes = stylesConfig(styles, "home-mint");
 
 const HomeMint = () => {
+	const walletState = useConnectWallet();
 	const [file, setFile] = useState(null);
 	const [loading, setLoading] = useState(false);
 	const [transactionDetails, setTransactionDetails] = useState({
@@ -29,6 +31,8 @@ const HomeMint = () => {
 	});
 
 	const handleDrop = (event) => {
+		if (!walletState || !walletState.signer)
+			return alert("Please connect your wallet first");
 		event.preventDefault();
 		const { files } = event.dataTransfer;
 		if (files.length === 0) {
@@ -42,15 +46,21 @@ const HomeMint = () => {
 	};
 
 	const handleDragOver = (event) => {
+		if (!walletState || !walletState.signer)
+			return alert("Please connect your wallet first");
 		event.preventDefault();
 	};
 
 	const handleDragStart = (event) => {
+		if (!walletState || !walletState.signer)
+			return alert("Please connect your wallet first");
 		event.dataTransfer.setData("text/plain", event.target.id);
 	};
 
 	const handleSubmit = async (event) => {
 		event?.preventDefault();
+		if (!walletState || !walletState.signer)
+			return alert("Please connect your wallet first");
 		try {
 			setLoading(true);
 			if (file) {
@@ -111,6 +121,13 @@ const HomeMint = () => {
 								<label
 									htmlFor="file"
 									className={classes("-inputfile-label")}
+									title={
+										walletState && walletState.signer
+											? loading
+												? "Please wait while we upload your file"
+												: "Upload your file"
+											: "Please connect your wallet first"
+									}
 								>
 									<FiUpload />
 									Browse File
@@ -118,7 +135,18 @@ const HomeMint = () => {
 										type="file"
 										name="file"
 										id="file"
-										disabled={loading}
+										disabled={
+											loading ||
+											!walletState ||
+											!walletState.signer
+										}
+										title={
+											walletState && walletState.signer
+												? loading
+													? "Please wait while we upload your file"
+													: "Upload your file"
+												: "Please connect your wallet first"
+										}
 										className={classes("-inputfile")}
 										onChange={(e) =>
 											setFile(e.target.files[0])

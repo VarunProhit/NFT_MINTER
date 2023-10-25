@@ -13,33 +13,33 @@
 	cursor: pointer;
 	user-select: none;
 	transition: all 0.2s ease-in-out;
+	overflow: hidden;
 
 	&--filled {
-		background-color: var(--color-black);
+		background-color: var(--blue);
+		color: var(--theme-white);
+	}
+
+	&--outlined {
+		background-color: transparent;
 		color: var(--color-white);
 		border-color: var(--color-black);
 	}
 
-	&--outlined {
-		background-color: var(--color-white);
-		color: var(--color-black);
-		border-color: var(--color-black);
-	}
-
 	&--medium {
-		padding: 10px 18px;
+		padding: 10px 24px;
 		min-width: 100px;
 		@include typography(btn, md);
 	}
 
 	&--small {
-		padding: 6px 12px;
+		padding: 6px 24px;
 		min-width: 80px;
 		@include typography(btn, sm);
 	}
 
 	&--large {
-		padding: 16px 24px;
+		padding: 16px 36px;
 		min-width: 120px;
 		@include typography(btn, lg);
 	}
@@ -59,11 +59,19 @@
 		align-items: center;
 
 		&--left {
-			margin-right: 8px;
+			margin-right: 12px;
 		}
 
 		&--right {
-			margin-left: 8px;
+			margin-left: 12px;
+		}
+
+		img,
+		svg {
+			width: 16px;
+			height: 16px;
+			flex: 0 0 auto;
+			user-select: none;
 		}
 	}
 
@@ -88,6 +96,30 @@
 	&--large &__loader {
 		width: 23px;
 		height: 23px;
+	}
+
+	&--small .button__icon {
+		img,
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&--medium .button__icon {
+		img,
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	&--large .button__icon {
+		img,
+		svg {
+			width: 24px;
+			height: 24px;
+		}
 	}
 
 	&--filled &__loader {

@@ -8,6 +8,7 @@
 	transition: all var(--transition-time) ease-in-out;
 }
 
+@import "./sass/typography";
 @import "./sass/shadows";
 @import "./sass/colors";
 @import "./sass/presets";
@@ -31,7 +32,6 @@
 @import "./sass/mixins";
 @import "./sass/responsive";
 @import "./sass/variables";
-@import "./sass/typography";
 
 html {
 	scroll-behavior: smooth;
@@ -39,6 +39,7 @@ html {
 }
 
 body {
+	background-color: var(--color-white);
 	font-family: var(--font-poppins);
 	overflow-x: hidden;
 	min-height: 100vh;
