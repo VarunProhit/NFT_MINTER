@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import metamaskIcon from "../../../SVGs/metamask.svg";
 import Button from "../../../library/Button";
 import Typography from "../../../library/Typography";
@@ -27,6 +27,14 @@ const HomeHero = () => {
 			}, 2500);
 		}
 	};
+
+	useEffect(() => {
+		if (walletState?.signer) {
+			setButtonIcon(<FiCopy />);
+		} else {
+			setButtonIcon(<img src={metamaskIcon} alt="metamask" />);
+		}
+	}, [walletState]);
 
 	return (
 		<section

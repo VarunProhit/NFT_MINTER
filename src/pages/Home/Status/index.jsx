@@ -4,11 +4,14 @@ import { stylesConfig } from "../../../utils/functions";
 import Typography from "../../../library/Typography";
 import useWallet from "../../../hooks/wallet";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import useConnectWallet from "../../../hooks/connect-wallet";
+import Button from "../../../library/Button";
 
 const classes = stylesConfig(styles, "home-status");
 
 const HomeStatus = () => {
 	const walletState = useWallet();
+	const connection = useConnectWallet();
 	const [fetching, setFetching] = useState(false);
 	const [balance, setBalance] = useState(0);
 
@@ -25,6 +28,10 @@ const HomeStatus = () => {
 		}
 	};
 
+	const handleDisconnect = () => {
+		connection.disconnect();
+	};
+
 	useEffect(() => {
 		getBalance();
 	}, []);
@@ -34,11 +41,16 @@ const HomeStatus = () => {
 			<div className={classes("-container")}>
 				<div className={classes("-head")}>
 					<Typography size="lg">Your Wallet</Typography>
-					{fetching ? (
-						<AiOutlineLoading3Quarters />
-					) : (
-						<img src="/vectors/metamask.svg" alt="logo" />
-					)}
+					<div className={classes("-head-right")}>
+						<Button size="medium" onClick={handleDisconnect}>
+							Disconnect Wallet
+						</Button>
+						{fetching ? (
+							<AiOutlineLoading3Quarters />
+						) : (
+							<img src="/vectors/metamask.svg" alt="logo" />
+						)}
+					</div>
 				</div>
 				<div className={classes("-body")}>
 					<Typography size="md">Balance: {balance} ETH</Typography>
