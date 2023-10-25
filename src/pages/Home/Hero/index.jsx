@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import metamaskIcon from "../../../SVGs/metamask.svg";
 import Button from "../../../library/Button";
 import Typography from "../../../library/Typography";
-import { stylesConfig } from "../../../utils/functions";
-import styles from "./styles.module.scss";
+import { copy, stylesConfig } from "../../../utils/functions";
 import useConnectWallet from "../../../hooks/connect-wallet";
+import { FiCopy, FiCheck } from "react-icons/fi";
+import styles from "./styles.module.scss";
 
 const classes = stylesConfig(styles, "home-hero");
 
 const HomeHero = () => {
 	const walletState = useConnectWallet();
+	const [buttonIcon, setButtonIcon] = useState(
+		<img src={metamaskIcon} alt="metamask" />
+	);
+
+	const handleClick = () => {
+		if (!walletState?.signer) {
+			walletState.connect();
+			setButtonIcon(<FiCopy />);
+		} else {
+			copy(walletState.signer.address);
+			setButtonIcon(<FiCheck />);
+			setTimeout(() => {
+				setButtonIcon(<FiCopy />);
+			}, 2500);
+		}
+	};
 
 	return (
 		<section
@@ -44,18 +61,18 @@ const HomeHero = () => {
 						digital goods secured with blockchain technology.
 					</Typography>
 					<Button
-						icon={<img src={metamaskIcon} alt="metamask" />}
+						icon={buttonIcon}
+						iconPosition={walletState?.signer ? "right" : "left"}
 						className={classes("-button")}
 						size="large"
-						onClick={() => {
-							if (!walletState?.signer) walletState.connect();
-						}}
+						onClick={handleClick}
 					>
 						{(() => {
 							if (walletState && walletState.signer) {
 								return `Connected to ${
 									walletState.signer.address.slice(0, 5) +
-									"..."
+									"..." +
+									walletState.signer.address.slice(-3)
 								}`;
 							} else {
 								return "Connect Wallet";
