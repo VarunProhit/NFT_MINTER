@@ -60,7 +60,9 @@ const HomeStatus = () => {
 							<IoCopyOutline />
 						</button>
 					</Typography>
-					<Typography size="md">Balance: {balance} ETH</Typography>
+					<Typography size="md">
+						Balance: {+balance.toFixed(2)} ETH
+					</Typography>
 				</div>
 			</div>
 		</section>
