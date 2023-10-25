@@ -3,7 +3,11 @@ import { useState } from "react";
 export const useContextData = () => {
 	// Global Authentication State
 	const [loggedIn, setLoggedIn] = useState(false);
-	const [walletState, setWalletState] = useState(null);
+	const [walletState, setWalletState] = useState({
+		provider: null,
+		signer: null,
+		address: null,
+	});
 
 	const handleWalletState = (wallet) => {
 		setWalletState(wallet);

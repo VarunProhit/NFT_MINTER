@@ -3,7 +3,11 @@ import { createContext } from "react";
 const GlobalContext = createContext({
 	loggedIn: false,
 	setLoggedIn: () => {},
-	walletState: null,
+	walletState: {
+		provider: null,
+		signer: null,
+		address: null,
+	},
 	setWalletState: () => {},
 });
 

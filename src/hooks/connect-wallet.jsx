@@ -20,6 +20,7 @@ const useConnectWallet = () => {
 			);
 			setWalletState({
 				contract,
+				provider,
 				signer,
 			});
 		} catch (error) {
