@@ -5,6 +5,7 @@ import { marketPlaceContractAddress } from "../constants/variables";
 
 const useConnectWallet = () => {
 	const { walletState, setWalletState } = useStore();
+
 	const createInstance = async () => {
 		try {
 			if (!window.ethereum) {
@@ -27,10 +28,18 @@ const useConnectWallet = () => {
 		}
 	};
 
+	const disconnectWallet = () => {
+		setWalletState({
+			contract: null,
+			signer: null,
+		});
+	};
+
 	return {
 		signer: walletState?.signer,
 		contract: walletState?.contract,
 		connect: createInstance,
+		disconnect: disconnectWallet,
 	};
 };
 
