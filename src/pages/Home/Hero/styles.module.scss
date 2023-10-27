@@ -17,11 +17,11 @@
 
 	&-header {
 		width: 100%;
-		height: 80px;
+		height: 90px;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 5%;
+		padding: 0 24px;
 		position: relative;
 
 		img {
@@ -51,6 +51,38 @@
 
 				li {
 					@include font(Montserrat, 16px, 400, 120%, #000);
+				}
+			}
+		}
+
+		& > *:first-child,
+		& > *:last-child {
+			width: 275px;
+		}
+
+		&-chip {
+			display: inline-flex;
+			justify-content: center;
+			align-items: center;
+			gap: 12px;
+			background-color: var(--blue);
+			color: var(--color-white);
+			border-radius: 12px;
+			padding: 8px 0;
+
+			button {
+				all: unset;
+				box-sizing: border-box;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				padding: 8px;
+				cursor: pointer;
+				user-select: none;
+
+				svg {
+					width: 20px;
+					height: 20px;
 				}
 			}
 		}
@@ -108,12 +140,6 @@
 	&-button {
 		@include font(Montserrat, 24px, 400, 120%, #fff);
 		max-width: 75%;
-
-		img,
-		svg {
-			width: 28px;
-			height: 28px;
-		}
 	}
 }
 

@@ -4,7 +4,7 @@
 
 $font-families: ("montserrat", "source-sans");
 
-$font-sizes: ("xxs", "xs", "sm", "md", "lg", "xl", "xxl", "xxxl");
+$font-sizes: ("xxs", "xs", "sm", "s", "md", "lg", "xl", "xxl", "xxxl");
 
 $font-weights: ("light", "regular", "medium", "semi-bold", "bold");
 
@@ -30,6 +30,9 @@ $font-weights: ("light", "regular", "medium", "semi-bold", "bold");
 		line-height: 20px;
 	} @else if $size == "sm" {
 		font-size: 16px;
+		line-height: 32px;
+	} @else if $size == "s" {
+		font-size: 24px;
 		line-height: 32px;
 	} @else if $size == "md" {
 		font-size: 32px;
