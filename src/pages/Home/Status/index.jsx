@@ -53,15 +53,14 @@ const HomeStatus = () => {
 					</div>
 				</div>
 				<div className={classes("-body")}>
-					<Typography size="md">
-						Address: {walletState.address.slice(0, 7)}...
-						{walletState.address.slice(-3)}
+					<Typography size="s">
+						Address: {walletState.address}
 						<button onClick={() => copy(walletState.address)}>
 							<IoCopyOutline />
 						</button>
 					</Typography>
-					<Typography size="md">
-						Balance: {+balance.toFixed(2)} ETH
+					<Typography size="s">
+						Balance: {(+balance).toFixed(2)} ETH
 					</Typography>
 				</div>
 			</div>

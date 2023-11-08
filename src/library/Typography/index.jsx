@@ -41,6 +41,7 @@ export type FontSize =
 	| "xxs"
 	| "xs"
 	| "sm"
+	| "s"
 	| "md"
 	| "lg"
 	| "xl"
@@ -62,7 +63,17 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 
 Typography.propTypes = {
 	family: PropTypes.oneOf(["montserrat", "source-sans"]),
-	size: PropTypes.oneOf(["xxs", "xs", "sm", "md", "lg", "xl", "xxl", "xxxl"]),
+	size: PropTypes.oneOf([
+		"xxs",
+		"xs",
+		"sm",
+		"s",
+		"md",
+		"lg",
+		"xl",
+		"xxl",
+		"xxxl",
+	]),
 	weight: PropTypes.oneOf(["regular", "medium", "semi-bold", "bold"]),
 	children: PropTypes.node.isRequired,
 	as: PropTypes.elementType,

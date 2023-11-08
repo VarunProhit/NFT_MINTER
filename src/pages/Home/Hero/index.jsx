@@ -4,7 +4,8 @@ import Button from "../../../library/Button";
 import Typography from "../../../library/Typography";
 import { copy, stylesConfig } from "../../../utils/functions";
 import useConnectWallet from "../../../hooks/connect-wallet";
-import { FiCopy, FiCheck } from "react-icons/fi";
+import { IoCheckmark, IoCopyOutline } from "react-icons/io5";
+import { LuLogOut } from "react-icons/lu";
 import styles from "./styles.module.scss";
 
 const classes = stylesConfig(styles, "home-hero");
@@ -12,29 +13,49 @@ const classes = stylesConfig(styles, "home-hero");
 const HomeHero = () => {
 	const walletState = useConnectWallet();
 	const [buttonIcon, setButtonIcon] = useState(
-		<img src={metamaskIcon} alt="metamask" />
+		<img
+			src={metamaskIcon}
+			alt="metamask"
+			style={{
+				width: "28px",
+				height: "28px",
+			}}
+		/>
 	);
 
 	const handleClick = () => {
 		if (!walletState?.signer) {
 			walletState.connect();
-			setButtonIcon(<FiCopy />);
+			setButtonIcon(<IoCopyOutline />);
 		} else {
 			copy(walletState.signer.address);
-			setButtonIcon(<FiCheck />);
+			setButtonIcon(<IoCheckmark />);
 			setTimeout(() => {
-				setButtonIcon(<FiCopy />);
+				setButtonIcon(<IoCopyOutline />);
 			}, 2500);
 		}
 	};
 
+	const handleDisconnect = () => {
+		walletState.disconnect();
+	};
+
 	useEffect(() => {
 		if (walletState?.signer) {
-			setButtonIcon(<FiCopy />);
+			setButtonIcon(<IoCopyOutline />);
 		} else {
-			setButtonIcon(<img src={metamaskIcon} alt="metamask" />);
+			setButtonIcon(
+				<img
+					src={metamaskIcon}
+					alt="metamask"
+					style={{
+						width: "28px",
+						height: "28px",
+					}}
+				/>
+			);
 		}
-	}, [walletState?.signer]);
+	}, [walletState?.signer, walletState?.address]);
 
 	return (
 		<section
@@ -53,7 +74,29 @@ const HomeHero = () => {
 						<li>Your Profile</li>
 					</ul>
 				</nav>
-				<Button size="small">Explore</Button>
+				{walletState?.signer ? (
+					<div className={classes("-header-chip")}>
+						<Typography as="span" size="s">
+							{walletState.signer.address.slice(0, 5) +
+								"..." +
+								walletState.signer.address.slice(-3)}
+						</Typography>
+						<button onClick={handleClick}>{buttonIcon}</button>
+						<button onClick={handleDisconnect}>
+							<LuLogOut />
+						</button>
+					</div>
+				) : (
+					<Button
+						icon={buttonIcon}
+						iconPosition="left"
+						className={classes("-button")}
+						size="large"
+						onClick={handleClick}
+					>
+						Connect Wallet
+					</Button>
+				)}
 			</div>
 			<div className={classes("-body")}>
 				<div className={classes("-content")}>
@@ -68,25 +111,6 @@ const HomeHero = () => {
 						On NFT Marketplace you can buy, sell, and explore
 						digital goods secured with blockchain technology.
 					</Typography>
-					<Button
-						icon={buttonIcon}
-						iconPosition={walletState?.signer ? "right" : "left"}
-						className={classes("-button")}
-						size="large"
-						onClick={handleClick}
-					>
-						{(() => {
-							if (walletState && walletState.signer) {
-								return `Connected to ${
-									walletState.signer.address.slice(0, 5) +
-									"..." +
-									walletState.signer.address.slice(-3)
-								}`;
-							} else {
-								return "Connect Wallet";
-							}
-						})()}
-					</Button>
 					<span className="empty"></span>
 					<span className="empty"></span>
 				</div>
